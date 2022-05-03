@@ -23,6 +23,7 @@ if __name__ == "__main__":
     parser.add_argument("-c","--columnar", help="Bruteforces based on Columnar Transposition Cipher",action='store_true',dest='COLUMNAR')
     parser.add_argument("-a","--all", help="Bruteforces based on All Ciphers (NOTE: May take a longer time)",action='store_true',dest='ALL')
     parser.add_argument("-singlethread","--st", help="Fallback to single-threaded",action='store_true',dest='SINGLETHREADED')
+    parser.add_argument("-file","--f", help="Outputs to a file",action='store_true',dest='FILE')
     parser.add_argument(help="CipherText",type=str.upper,dest='CIPHERTEXT')
     obj = parser.parse_args()
 
@@ -30,7 +31,8 @@ if __name__ == "__main__":
     if python_implementation() == 'PyPy':
         globals.asciiFallback = True
     importWords(dicFilename)            #Imports Dictionary
-    
+    if obj.FILE:
+        globals.toFile = True;
 
     if obj.SINGLETHREADED:
         if (obj.ALL):               

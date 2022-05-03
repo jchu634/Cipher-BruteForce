@@ -11,6 +11,7 @@ def scoreViaDict(plainText:str,dic=globals.dic): #Scores Based on a dictionary
     return [score, plainText, ','.join(wordFound)]
 
 def outputToConsole(noToPrint:int=100):
+    
     global ranked
     if globals.asciiFallback:
         print('-' * get_terminal_size().columns)
@@ -21,5 +22,10 @@ def outputToConsole(noToPrint:int=100):
         for i in range(noToPrint):
             print(globals.ranked[i][1].lower(), 'score=' + str(globals.ranked[i]
                                                     [0]), 'word=' + globals.ranked[i][2], sep=' | ',end=' |\n')
+        if globals.toFile:
+            f = open("results.txt",'w')
+            for strings in globals.ranked:
+                f.write("{},score={},words={}\n".format(strings[1].lower(),strings[0],strings[2]))
+            f.close()
     except IndexError:
         pass

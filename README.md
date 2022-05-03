@@ -11,4 +11,4 @@ Notes: Multithreaded Columnar may not always be faster
 - [ ] Add Frequency analysis to plaintext as option for score
 - [ ] Add option for custom amounts of output lines
 - [ ] Add option to be verbose or not for columnar Cipher
-- [ ] Add option to output to file
+- [x] Add option to output to file
