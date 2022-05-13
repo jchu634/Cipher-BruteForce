@@ -41,7 +41,7 @@ def columnarMultiThreaded(cipherText:str,maxKeyLength:int=9):
             NOTE: Scoring is done multi-threaded, 
             however during testing, single-threading was faster until n=9 where multi-threading was overwhelmingly faster
             """
-            globals.ranked += p.map(partial(scoreViaDict,dic=globals.dic),bruteForceDecipherList(cipherText,perms))
+            globals.ranked += p.map(partial(partial(scoreViaDict,dic=globals.dic),knownWords = globals.known),bruteForceDecipherList(cipherText,perms))
 
 
 def bruteForceDecipher(cipherText, perms):

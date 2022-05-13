@@ -1,26 +1,14 @@
 import globals
 from shutil import get_terminal_size
 flag = False
-def scoreViaDict(plainText:str,dic=globals.dic): #Scores Based on a dictionary
-    if globals.known:
-        return scoreViaDictWithKnownWords(plainText)
-    
-    score = 0 
-    wordFound = []
-    for word in dic:
-        _cnt = plainText.count(word)
-        if _cnt > 0:
-            score += _cnt
-            wordFound.append(word.lower())
-    return [score, plainText, ','.join(wordFound)]
-
-def scoreViaDictWithKnownWords(plainText:str,dic=globals.dic,knownWords=globals.known):
-    score = 0 
-    if globals.known:
-        for word in globals.known:
+def scoreViaDict(plainText:str,dic=globals.dic,knownWords=globals.known): #Scores Based on a dictionary
+    if knownWords:
+        for word in knownWords:
             if(plainText.count(word.upper()) ==0):
                 return [0, plainText, '']
     
+    score = 0 
+
     wordFound = []
     for word in dic:
         _cnt = plainText.count(word)
@@ -28,9 +16,6 @@ def scoreViaDictWithKnownWords(plainText:str,dic=globals.dic,knownWords=globals.
             score += _cnt
             wordFound.append(word.lower())
     return [score, plainText, ','.join(wordFound)]
-    
-    
-    pass
 
 
 

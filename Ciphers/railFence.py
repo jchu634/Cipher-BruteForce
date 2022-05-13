@@ -11,4 +11,4 @@ def railFence(cipherText:str,noToPrint:int=100):
 
     for i in tqdm(rails,ascii=globals.asciiFallback,desc='BruteForce Progress'):
         plaintext = Railfence(i).decipher(cipherText);
-        globals.ranked.append(scoreViaDict(plaintext))
+        globals.ranked.append(scoreViaDict(plaintext,knownWords=globals.known))
