@@ -23,12 +23,14 @@ if __name__ == "__main__":
     parser.add_argument("-c","--columnar", help="Bruteforces based on Columnar Transposition Cipher",action='store_true',dest='COLUMNAR')
     parser.add_argument("-a","--all", help="Bruteforces based on All Ciphers (NOTE: May take a longer time)",action='store_true',dest='ALL')
     parser.add_argument("-d","--dict", help="Custom Dictionary location",type=str,dest='DICT')
+    parser.add_argument("-k",'--known', nargs='+',help="Known Words",dest='KNOWN')
     parser.add_argument("-singlethread","--st", help="Fallback to single-threaded",action='store_true',dest='SINGLETHREADED')
     parser.add_argument("-file","--f", help="Outputs to a file",action='store_true',dest='FILE')
     parser.add_argument(help="CipherText",type=str.upper,dest='CIPHERTEXT')
     obj = parser.parse_args()
-
     
+    globals.known = obj.KNOWN
+
     if (obj.DICT):
         dicFilename = obj.DICT
     else:
@@ -40,7 +42,10 @@ if __name__ == "__main__":
         globals.toFile = True;
 
     if obj.SINGLETHREADED:
-        if (obj.ALL):               
+        if (obj.ALL):
+            columnarSingleThreaded(obj.CIPHERTEXT)
+            railFence(obj.CIPHERTEXT)                       
+            outputToConsole(100)
             pass
         else:
             if (obj.RAILFENCE):
@@ -52,7 +57,9 @@ if __name__ == "__main__":
                 outputToConsole(100)
     else:
         if (obj.ALL):               
-            pass
+            columnarSingleThreaded(obj.CIPHERTEXT)
+            railFence(obj.CIPHERTEXT)                       
+            outputToConsole(100)
         else:
             if (obj.RAILFENCE):
                 railFence(obj.CIPHERTEXT)

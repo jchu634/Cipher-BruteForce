@@ -5,7 +5,7 @@ A simple Python cipher bruteforcer.
 
 Notes: Multithreaded Columnar may not always be faster
 
-#ToDo
+# ToDo
 - [x] Add Custom Dictionary Support
 - [x] MultiThread Columnar
 - [ ] Add Frequency analysis to plaintext as option for score
